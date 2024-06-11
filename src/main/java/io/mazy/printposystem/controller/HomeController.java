@@ -4,7 +4,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.client.RestTemplate;
+
+import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.net.Socket;
 
 @Controller
 public class HomeController {
@@ -14,13 +17,12 @@ public class HomeController {
     }
 
     @GetMapping("/healthcheck")
-    public ResponseEntity<String> testConnection(@RequestParam String url) {
-        RestTemplate restTemplate = new RestTemplate();
-        try {
-            ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
-            return ResponseEntity.ok("Connection successful: " + response.getBody());
-        } catch (Exception e) {
-            return ResponseEntity.status(500).body("Connection failed: " + e.getMessage());
+    public ResponseEntity<String> testConnection(@RequestParam String ip, @RequestParam int port) {
+        try (Socket socket = new Socket()) {
+            socket.connect(new InetSocketAddress(ip, port), 5000);
+            return ResponseEntity.ok("Connection successful to " + ip + " on port " + port);
+        } catch (IOException e) {
+            return ResponseEntity.status(500).body("Connection failed to " + ip + " on port " + port + ": " + e.getMessage());
         }
     }
 }
