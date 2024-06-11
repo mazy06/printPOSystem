@@ -3,7 +3,6 @@ package io.mazy.printposystem.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -17,7 +16,9 @@ public class HomeController {
     }
 
     @GetMapping("/healthcheck")
-    public ResponseEntity<String> testConnection(@RequestParam String ip, @RequestParam int port) {
+    public ResponseEntity<String> testConnection() {
+        String ip = "192.168.1.13";
+        int port = 9100;
         try (Socket socket = new Socket()) {
             socket.connect(new InetSocketAddress(ip, port), 5000);
             return ResponseEntity.ok("Connection successful to " + ip + " on port " + port);
