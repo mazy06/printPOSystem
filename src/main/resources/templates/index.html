@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Projet</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div id="app">
+    <div class="pos_products">
+        <h1>Food Comptoir - POS System</h1>
+        <div class="categories">
+            <button onclick="showProducts('list_tacos')">Tacos</button>
+            <button onclick="showProducts('list_sandwichs')">Sandwichs</button>
+            <button onclick="showProducts('list_burgers')">Burgers</button>
+            <button onclick="showProducts('list_assiettes')">Assiettes</button>
+            <button onclick="showProducts('list_salades')">Salades</button>
+            <button onclick="showProducts('list_texmex')">Tex-Mex</button>
+            <button onclick="showProducts('list_menu_enfant')">Menu Enfant</button>
+            <button onclick="showProducts('list_dessert')">Desserts</button>
+            <button onclick="showProducts('list_boissons')">Boissons</button>
+            <div class="products" id="products"></div>
+        </div>
+
+        <button id="optionsButton" onclick="toggleOptions()">Options : Sauces - Pain - Supplément</button>
+        <div id="optionsContainer" class="hidden">
+            <div id="options" class="options"></div>
+        </div>
+
+        <button id="addToCartButton" onclick="addToCart()" style="display: none;">Ajouter au panier</button>
+
+    </div>
+    <div class="cart">
+        <h2>Panier</h2>
+        <ul id="cart"></ul>
+        <p><span id="total"></span></p>
+        <button id="print" onclick="printTicket()">Imprimer</button>
+    </div>
+</div>
+
+<script src="/js/script.js"></script>
+</body>
+</html>

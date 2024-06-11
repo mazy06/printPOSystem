@@ -1,0 +1,119 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+#app {
+    display: flex;
+}
+
+.pos_products {
+    flex: 3; /* Cette div prendra trois fois plus d'espace que .cart */
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.cart {
+    flex: 1; /* Cette div prendra un tiers de l'espace de .pos_products */
+    padding: 10px;
+    box-sizing: border-box;
+    border-left: 1px solid #ccc;
+    min-width: 200px; /* Vous pouvez ajuster cette valeur selon vos besoins */
+}
+
+.pos_products {
+    border-right: 1px solid #ccc;
+}
+
+.categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.categories button {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.categories button:hover {
+    background-color: #45a049;
+}
+
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.product {
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 150px;
+    text-align: center;
+}
+
+.product img {
+    max-width: 100%;
+}
+
+.optionsButton {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.option {
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 150px;
+    text-align: center;
+}
+
+.option img {
+    max-width: 100%;
+}
+
+.options.hidden {
+    display: none;
+}
+
+.cart ul {
+    list-style: none;
+    padding: 0;
+}
+
+.cart li {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+#optionsContainer {
+    display: none;
+}
+
