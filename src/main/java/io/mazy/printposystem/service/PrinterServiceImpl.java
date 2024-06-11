@@ -29,9 +29,8 @@ public class PrinterServiceImpl implements PrinterService {
                 .append("Date: ").append(dateFormat.format(dt)).append("\n")
                 .append("----------------------------------------\n")
                 .append(ticketContent).append("\n")
-                .append("----------------------------------------\n");
-
-        content.append("----------------------------------------\n")
+                .append("----------------------------------------\n")
+                .append("----------------------------------------\n")
                 .append("----------------------------------------\n")
                 .append("        Merci de votre visite !        \n")
                 .append("----------------------------------------\n");
@@ -47,8 +46,8 @@ public class PrinterServiceImpl implements PrinterService {
 
         Socket socket = new Socket();
         SocketAddress socketAddress = new InetSocketAddress(printerIP, printerPort);
-        socket.connect(socketAddress, 1000); // 10 secondes de délai de connexion
-        socket.setSoTimeout(2000); // 20 secondes de délai de lecture
+        socket.connect(socketAddress, 10000); // 10 secondes de délai de connexion
+        socket.setSoTimeout(20000); // 20 secondes de délai de lecture
 
         // Écriture sur le flux de sortie
         OutputStream outputStream = socket.getOutputStream();
