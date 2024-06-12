@@ -41,7 +41,7 @@ public class PrinterServiceImpl implements PrinterService {
         //byte[] cutCommand = new byte[]{0x1B, 'i'};
 
 
-        String printerIP = "192.168.1.13";
+        String printerIP = getAdressIp();
         int printerPort = 9100;
 
         Socket socket = new Socket();

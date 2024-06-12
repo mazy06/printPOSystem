@@ -103,8 +103,26 @@ let cart = [];
 let selectedProduct = null;
 let selectedOptions = [];
 
+async function getPublicIP() {
+    try {
+        const response = await fetch('https://api.ipify.org?format=json');
+        const data = await response.json();
+        return data.ip;
+    } catch (error) {
+        console.error('Erreur lors de la récupération de l\'adresse IP publique:', error);
+        return null;
+    }
+}
+
 
 function showProducts(category) {
+    getPublicIP().then(ip => {
+        if (ip) {
+            console.log('Votre adresse IP publique est :', ip);
+        } else {
+            console.log('Impossible de récupérer l\'adresse IP publique.');
+        }
+    });
     const productsContainer = document.getElementById('products');
     productsContainer.innerHTML = '';
     const products = categories[category];
