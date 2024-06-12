@@ -47,7 +47,7 @@ public class PrinterServiceImpl implements PrinterService {
 
         String printerIP = getAdressIp();
         int printerPort = 9100;
-        LOGGER.log(Level.WARNING, "L'adresse IP publique", printerIP);
+        LOGGER.log(Level.WARNING, "L'adresse IP publique" + printerIP + "port : "+ printerPort, printerIP);
 
 
         Socket socket = new Socket();
