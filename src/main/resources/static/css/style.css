@@ -32,11 +32,12 @@ body {
 }
 
 .categories button {
-    padding: 10px;
+    padding: 28px 44px;
     background-color: #4CAF50;
     color: white;
     border: none;
     cursor: pointer;
+    font-size: larger;
 }
 
 .categories button:hover {
@@ -44,10 +45,13 @@ body {
 }
 
 .products {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 20px;
+    background-color: darkgray;
+    font-size: large;
+    color: white;
+    border: 1px solid #ccc;
+    padding: 10px 20px;
+    width: 150px;
+    text-align: center;
 }
 
 .product {

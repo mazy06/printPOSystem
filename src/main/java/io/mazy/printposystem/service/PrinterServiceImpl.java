@@ -2,10 +2,10 @@ package io.mazy.printposystem.service;
 
 import org.springframework.stereotype.Service;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.net.InetSocketAddress;
-import java.net.Socket;
-import java.net.SocketAddress;
+import java.net.*;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -58,6 +58,30 @@ public class PrinterServiceImpl implements PrinterService {
         // Fermeture des flux et de la socket
         outputStream.close();
         socket.close();
+    }
+
+    @Override
+    public String getAdressIp() {
+        String ipServiceURL = "https://api.ipify.org";
+        StringBuilder result = new StringBuilder();
+
+        try {
+            URL url = new URL(ipServiceURL);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    result.append(line);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        return result.toString();
     }
 }
 

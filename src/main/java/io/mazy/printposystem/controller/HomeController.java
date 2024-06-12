@@ -1,5 +1,6 @@
 package io.mazy.printposystem.controller;
 
+import io.mazy.printposystem.service.PrinterServiceImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +11,9 @@ import java.net.Socket;
 
 @Controller
 public class HomeController {
+
+    private PrinterServiceImpl printerService;
+
     @GetMapping("/index")
     public String index(){
         return "index";
@@ -17,7 +21,7 @@ public class HomeController {
 
     @GetMapping("/healthcheck")
     public ResponseEntity<String> testConnection() {
-        String ip = "192.168.1.13";
+        String ip = printerService.getAdressIp();
         int port = 9100;
         try (Socket socket = new Socket()) {
             socket.connect(new InetSocketAddress(ip, port), 5000);
@@ -26,5 +30,7 @@ public class HomeController {
             return ResponseEntity.status(500).body("Connection failed to " + ip + " on port " + port + ": " + e.getMessage());
         }
     }
+
+
 }
 
