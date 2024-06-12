@@ -47,6 +47,8 @@ public class PrinterServiceImpl implements PrinterService {
 
         String printerIP = getAdressIp();
         int printerPort = 9100;
+        LOGGER.log(Level.WARNING, "L'adresse IP publique", printerIP);
+
 
         Socket socket = new Socket();
         SocketAddress socketAddress = new InetSocketAddress(printerIP, printerPort);
@@ -88,7 +90,6 @@ public class PrinterServiceImpl implements PrinterService {
         // Parsing JSON to get the IP value
         String json = result.toString();
         String ip = json.replaceAll(".*\"ip\":\"([^\"]+)\".*", "$1");
-        LOGGER.log(Level.INFO, "L'adresse IP publique", ip);
 
         return ip;
     }
