@@ -45,15 +45,18 @@ public class PrinterServiceImpl implements PrinterService {
         // Commande ESC/POS pour découper le papier
         byte[] cutCommand = new byte[]{0x1D, 'V', 1}; // Utilisez les commandes appropriées pour votre imprimante
 
-        String printerIP = getAdressIp();
-        int printerPort = 9100;
-        LOGGER.log(Level.WARNING, "L'adresse IP publique" + printerIP + "port : "+ printerPort, printerIP);
+        String printerHostname = "printposystem.ddns.net";
+        int printerPort = 80;
 
 
+        InetAddress printerAddress = InetAddress.getByName(printerHostname);
+        InetSocketAddress socketAddress = new InetSocketAddress(printerAddress, printerPort);
+
+        // Connexion au socket
         Socket socket = new Socket();
-        SocketAddress socketAddress = new InetSocketAddress(printerIP, printerPort);
         socket.connect(socketAddress, 10000); // 10 secondes de délai de connexion
         socket.setSoTimeout(20000); // 20 secondes de délai de lecture
+
 
         // Écriture sur le flux de sortie
         OutputStream outputStream = socket.getOutputStream();
