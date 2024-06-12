@@ -9,9 +9,13 @@ import java.net.*;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @Service
 public class PrinterServiceImpl implements PrinterService {
+    private static final Logger LOGGER = Logger.getLogger(PrinterService.class.getName());
+
     @Override
     public void print(String ticketContent) throws Exception {
 
@@ -33,13 +37,13 @@ public class PrinterServiceImpl implements PrinterService {
                 .append("----------------------------------------\n")
                 .append("----------------------------------------\n")
                 .append("        Merci de votre visite !        \n")
+                .append("----------------------------------------\n")
+                .append("----------------------------------------\n")
                 .append("----------------------------------------\n");
+
 
         // Commande ESC/POS pour découper le papier
         byte[] cutCommand = new byte[]{0x1D, 'V', 1}; // Utilisez les commandes appropriées pour votre imprimante
-        //byte[] cutCommand = new byte[]{0x1D, 'V', 0};
-        //byte[] cutCommand = new byte[]{0x1B, 'i'};
-
 
         String printerIP = getAdressIp();
         int printerPort = 9100;
@@ -62,11 +66,12 @@ public class PrinterServiceImpl implements PrinterService {
 
     @Override
     public String getAdressIp() {
-        String ipServiceURL = "https://api.ipify.org";
+        String ipServiceURL = "https://api.ipify.org?format=json";
         StringBuilder result = new StringBuilder();
 
         try {
             URL url = new URL(ipServiceURL);
+            LOGGER.log(Level.INFO, "L'adresse IP publique", ipServiceURL);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
 
@@ -77,11 +82,14 @@ public class PrinterServiceImpl implements PrinterService {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE, "Erreur lors de la récupération de l'adresse IP publique", e);
             return null;
         }
 
-        return result.toString();
+        // Parsing JSON to get the IP value
+        String json = result.toString();
+        String ip = json.replaceAll(".*\"ip\":\"([^\"]+)\".*", "$1");
+        return ip;
     }
 }
 
