@@ -71,7 +71,6 @@ public class PrinterServiceImpl implements PrinterService {
 
         try {
             URL url = new URL(ipServiceURL);
-            LOGGER.log(Level.INFO, "L'adresse IP publique", ipServiceURL);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
 
@@ -89,6 +88,8 @@ public class PrinterServiceImpl implements PrinterService {
         // Parsing JSON to get the IP value
         String json = result.toString();
         String ip = json.replaceAll(".*\"ip\":\"([^\"]+)\".*", "$1");
+        LOGGER.log(Level.INFO, "L'adresse IP publique", ip);
+
         return ip;
     }
 }
