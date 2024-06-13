@@ -67,6 +67,12 @@ const list_dessert = {
     3: { name: "Cheesecake oreo", img: "images/cheesecakeoreo.png", price: 9 }
 };
 
+const list_pizza = {
+    1: { name: "Pizza A", img: "images/tiramisuspeculos.png", price: 2 },
+    2: { name: "Pizza B", img: "images/tarteaudaim.png", price: 15 },
+    3: { name: "Pizza C", img: "images/cheesecakeoreo.png", price: 9 }
+};
+
 const list_boissons = {
     1: { name: "Soda", img: "images/soda.png", price: 2},
     2: { name: "Capri sun", img: "images/caprisun.png", price: 15 },
@@ -96,7 +102,8 @@ const categories = {
     list_texmex,
     list_menu_enfant,
     list_dessert,
-    list_boissons
+    list_boissons,
+    list_pizza
 };
 
 let cart = [];
@@ -133,7 +140,6 @@ function showProducts(category) {
         productElement.innerHTML = `
             <div id="product_container_${id}" class="product_container" onclick="selectProduct(${id}, '${category}')">
                 <p>${product.name}</p>
-                <p>${product.price} euros</p>
             </div>`;
         productsContainer.appendChild(productElement);
     }
@@ -150,14 +156,12 @@ function selectProduct(productId, category) {
     selectedProduct = { id: productId, category: category };
     const selectedProductContainer = document.getElementById(`product_container_${productId}`);
     const parentDiv = selectedProductContainer.parentNode;
-    parentDiv.style.backgroundColor = 'green';
+    parentDiv.style.backgroundColor = 'black';
     const children = parentDiv.children;
     for (let i = 0; i < children.length; i++) {
         const child = children[i];
         child.style.color = 'white';
     }
-    showOptions();
-    document.getElementById('optionsContainer').style.display = 'none';
 }
 
 function selectOption(optionId) {
@@ -166,25 +170,24 @@ function selectOption(optionId) {
         selectedOptions.splice(optionIndex, 1);
         const selectedOptionContainer = document.getElementById(`option_container_${optionId}`);
         const parentDiv = selectedOptionContainer.parentNode;
-        parentDiv.style.backgroundColor = 'initial';
+        parentDiv.style.backgroundColor = '#4CAF50';
         const children = parentDiv.children;
         for (let i = 0; i < children.length; i++) {
             const child = children[i];
-            child.style.color = 'black';
+            child.style.color = '#4CAF50';
         }
     } else {
         const selectedOption = { id: optionId };
         selectedOptions.push(selectedOption);
         const selectedOptionContainer = document.getElementById(`option_container_${optionId}`);
         const parentDiv = selectedOptionContainer.parentNode;
-        parentDiv.style.backgroundColor = 'green';
+        parentDiv.style.backgroundColor = 'black';
         const children = parentDiv.children;
         for (let i = 0; i < children.length; i++) {
             const child = children[i];
             child.style.color = 'white';
         }
     }
-    document.getElementById('addToCartButton').style.display = selectedOptions.length > 0 ? 'block' : 'none';
 }
 
 function toggleOptions() {
@@ -208,7 +211,6 @@ function showOptions() {
         optionElement.innerHTML = `
             <div id="option_container_${id}" class="option_container" onclick="selectOption(${id})">
                 <p>${option.name}</p>
-                <p>${option.price} euros</p>
             </div>`;
         optionsContainer.appendChild(optionElement);
     }
@@ -221,14 +223,13 @@ function addToCart() {
     }
 
     const product = categories[selectedProduct.category][selectedProduct.id];
-    const productName = `${product.name} avec ${selectedOptions.map(option => list_options[option.id].name).join(', ')}`;
+    const productName = `${product.name} \n+ ${selectedOptions.map(option => list_options[option.id].name).join('\n + ')}`;
     const productPrice = selectedOptions.reduce((total, option) => total + list_options[option.id].price, product.price);
 
     cart.push({ name: productName, price: productPrice });
 
     updateCart();
     resetSelections();
-    document.getElementById('addToCartButton').style.display = 'none';
 
     // Supprimer la classe 'hidden' pour afficher à nouveau les options
     document.getElementById('optionsContainer').style.display = 'none';
@@ -241,11 +242,11 @@ function resetSelections() {
         const productId = selectedProduct.id;
         const selectedProductContainer = document.getElementById(`product_container_${productId}`);
         const parentDiv = selectedProductContainer.parentNode;
-        parentDiv.style.backgroundColor = 'initial';
+        parentDiv.style.backgroundColor = '#9b59b6';
         const children = parentDiv.children;
         for (let i = 0; i < children.length; i++) {
             const child = children[i];
-            child.style.color = 'black';
+            child.style.color = 'white';
         }
         selectedProduct = null;
     }
@@ -253,38 +254,49 @@ function resetSelections() {
         const optionId = option.id;
         const selectedOptionContainer = document.getElementById(`option_container_${optionId}`);
         const parentDiv = selectedOptionContainer.parentNode;
-        parentDiv.style.backgroundColor = 'initial';
+        parentDiv.style.backgroundColor = '#42a07f';
         const children = parentDiv.children;
         for (let i = 0; i < children.length; i++) {
             const child = children[i];
-            child.style.color = 'black';
+            child.style.color = 'white';
         }
     });
     selectedOptions = [];
 }
 
 function updateCart() {
-    const cartContainer = document.getElementById('cart');
-    cartContainer.innerHTML = '';
-    let total = 0;
-    cart.forEach(item => {
-        const cartItemElement = document.createElement('div');
-        cartItemElement.innerHTML = `
-            <p>${item.name}</p>
-            <p>${item.price} euros</p>
-        `;
-        cartContainer.appendChild(cartItemElement);
-        total += item.price;
-    });
-    document.getElementById('total').innerHTML = `Total: ${total} euros`;
+    // Accéder au premier élément avec la classe 'product-bar'
+    const cartContainer = document.getElementsByClassName('product-bar')[0];
+
+    // Vérifier si l'élément existe
+    if (cartContainer) {
+        // Vider le conteneur de la liste des produits
+        cartContainer.innerHTML = '';
+
+        let total = 0;
+        cart.forEach(item => {
+            const cartItemElement = document.createElement('li');
+            cartItemElement.innerHTML = `
+                <span>${item.name}</span>
+                <span>${item.price} euros</span>
+            `;
+            cartContainer.appendChild(cartItemElement);
+            total += item.price;
+        });
+
+        // Mettre à jour le total
+        document.getElementById('total').innerHTML = `${total} euros`;
+    }
 }
 
+
 showProducts('list_tacos');
+showOptions();
 
 function printTicket() {
     const cartContent = cart.map(item => `${item.name}`).join('\n\n');
     const total = cart.reduce((sum, item) => sum + item.price, 0);
-    const ticketContent = `\n\nArticle:\n${cartContent}\n\nTotal: ${total.toFixed(2)} euros`;
+    const ticketContent = `\n\nArticle:\n\n${cartContent}\n\nTotal: ${total.toFixed(2)} euros`;
 
     fetch('/print', {
         method: 'POST',
@@ -296,7 +308,7 @@ function printTicket() {
         .then(response => response.text())
         .then(data => {
             console.log(data);
-            alert('Ticket envoyé à l\'imprimante');
+            console('Ticket envoyé à l\'imprimante');
         })
         .catch(error => {
             console.error('Erreur:', error);

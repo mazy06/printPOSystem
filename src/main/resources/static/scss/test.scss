@@ -1,0 +1,248 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+$background-color: #f5f7fa;
+$nav-color: #34495e;
+$category-color: #e6e9ed;
+$item-color: #9b59b6;
+$register-color: #fff;
+$product-bar-color: #fff;
+$selected-color: #68b3c8;
+$pay-button-color: #42a07f;
+$add-to-cart-button: #2874A6;
+
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Open Sans', Helvetica, sans-serif;
+    background: $background-color;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    background: $nav-color;
+    padding: 9px 0;
+
+    ul {
+        display: flex;
+        align-items: center;
+        margin: 0;
+
+        li {
+            list-style-type: none;
+
+            a {
+                color: #fff;
+                padding: 20px;
+            }
+
+            a:hover {
+                background: darken($nav-color, 10%);
+            }
+        }
+    }
+
+    .search input {
+        width: 394px;
+        height: 40px;
+        margin-right: 30px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        text-align: center;
+    }
+
+    .search input::placeholder {
+        font-style: italic;
+    }
+}
+
+.sellables-container {
+    display: flex;
+    flex: 1;
+
+    .left-container {
+        flex: 3;  // Adjust this value to give more space to the left container
+        display: flex;
+        flex-direction: column;
+
+        .sellables {
+            display: flex;
+            flex-direction: column;
+
+            .pos_products {
+                overflow-y: auto; // Scrollbar will appear when content overflows
+                flex: 1;
+
+                .categories {
+                    display: flex;
+                    align-items: center;
+                    flex-wrap: wrap;
+                    margin: .5em;
+
+                    .category {
+                        padding: 17.5px;
+                        margin: 2px;
+                        border: 1px solid darken($category-color, 10%);
+                        border-radius: 5px;
+                        background: $category-color;
+                        color: #424A54;
+                    }
+
+                    .category:hover {
+                        background: darken($category-color, 10%);
+                    }
+
+                    .active {
+                        background: darken($category-color, 15%);
+                        color: #424A54;
+                    }
+
+                    .active:hover {
+                        background: darken($category-color, 20%);
+                    }
+                }
+            }
+
+            .item-group-wrapper {
+                .item-group {
+                    .products.product-flex-container {
+                        display: flex;
+                        flex-wrap: wrap;
+
+                        .product {
+                            .item {
+                                padding: 50px 35px;
+                                margin: 0.5em;
+                                border-radius: 5px;
+                                background: #9b59b6;
+                                color: #fff;
+                                flex: 0 0 calc(25% - 1em); // Par exemple, diviser en 4 colonnes
+                                max-width: calc(25% - 1em); // Garantit que les éléments ne dépassent pas cette largeur
+                                text-align: center; // Centrer le contenu à l'intérieur de chaque élément
+
+                                &:hover {
+                                    background: #804399;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .right-container {
+        flex: 1;  // Adjust this value to give less space to the right container
+        display: flex;
+        flex-direction: column;
+
+        .register-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;  // Ensure this takes the full height available
+
+            .customer input {
+                height: 40px;
+                width: 394px;
+                margin-top: 16px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                text-align: center;
+                font-size: 16px;
+            }
+
+            .customer input::placeholder {
+                font-style: italic;
+            }
+
+            .register {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                flex: 1;  // Ensure this takes the full height available
+                width: 400px;
+                margin: 1em 2em;
+                box-shadow: 0px 1px 7px 0px rgba(0, 0, 0, 0.25);
+                border-radius: 5px;
+                background: $register-color;
+                overflow-y: auto; // Scrollbar will appear when content overflows
+
+                .products {
+                    display: flex;
+                    flex-direction: column;
+                    flex: 1;  // Ensure this takes the full height available
+
+                    .cart {
+                        .product-bar {
+                            display: flex;
+                            justify-content: space-between;
+                            padding: 1em;
+                            background: $product-bar-color;
+                        }
+
+                        .product-bar:first-child {
+                            margin-top: 1em;
+                        }
+
+                        .product-bar:hover {
+                            background: darken($product-bar-color, 10%);
+                        }
+
+                        .selected {
+                            background: $selected-color;
+                            color: #fff;
+                        }
+
+                        .selected:hover {
+                            background: darken($selected-color, 10%);
+                        }
+                    }
+                }
+
+                .buttons {
+                    display: flex;
+                    justify-content: space-between;
+                    margin: 1em;
+
+                    .add-to-cart-button, .print-button {
+                        flex: 1;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        padding: 10px;
+                        border-radius: 5px;
+                        margin: 0 5px;
+
+                        a {
+                            color: #fff;
+                        }
+                    }
+
+                    .add-to-cart-button {
+                        background: $add-to-cart-button;
+
+                        a:hover {
+                            background: darken($add-to-cart-button, 5%);
+                        }
+                    }
+
+                    .print-button {
+                        background: $pay-button-color;
+
+                        a:hover {
+                            background: darken($pay-button-color, 5%);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

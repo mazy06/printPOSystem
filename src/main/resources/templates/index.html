@@ -4,41 +4,79 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mon Projet</title>
-    <link rel="stylesheet" href="/css/style.css">
+<!--    <link rel="stylesheet" href="/css/style.css">-->
 </head>
 <body>
 <div id="app">
-    <div class="pos_products">
-        <h1>Food Comptoir - POS System</h1>
-        <div class="categories">
-            <button onclick="showProducts('list_tacos')">Tacos</button>
-            <button onclick="showProducts('list_sandwichs')">Sandwichs</button>
-            <button onclick="showProducts('list_burgers')">Burgers</button>
-            <button onclick="showProducts('list_assiettes')">Assiettes</button>
-            <button onclick="showProducts('list_salades')">Salades</button>
-            <button onclick="showProducts('list_texmex')">Tex-Mex</button>
-            <button onclick="showProducts('list_menu_enfant')">Menu Enfant</button>
-            <button onclick="showProducts('list_dessert')">Desserts</button>
-            <button onclick="showProducts('list_boissons')">Boissons</button>
-            <div class="products" id="products"></div>
+    <nav>
+        <ul>
+            <li><a href="#">Point de vente</a></li>
+            <li><a href="#">+</a></li>
+            <li><a href="#">Data</a></li>
+            <li><a href="#">Historique</a></li>
+            <li><a href="#">Configuration</a></li>
+            <li><a href="#">Login</a></li>
+        </ul>
+
+        <div class="search">
+            <input type="Search" placeholder="Recherche un item.." />
         </div>
-
-        <button id="optionsButton" onclick="toggleOptions()">Options : Sauces - Pain - Supplément</button>
-        <div id="optionsContainer" class="hidden">
-            <div id="options" class="options"></div>
+    </nav>
+    <div class="sellables-container">
+        <div class="left-container">
+            <div class="sellables">
+                <div class="pos_products">
+                    <div class="categories">
+                        <button class="category" onclick="showProducts('list_tacos')">Tacos</button>
+                        <button class="category" onclick="showProducts('list_sandwichs')">Sandwichs</button>
+                        <button class="category" onclick="showProducts('list_burgers')">Burgers</button>
+                        <button class="category" onclick="showProducts('list_assiettes')">Assiettes</button>
+                        <button class="category" onclick="showProducts('list_salades')">Salades</button>
+                        <button class="category" onclick="showProducts('list_texmex')">Tex-Mex</button>
+                        <button class="category" onclick="showProducts('list_menu_enfant')">Menu Enfant</button>
+                        <button class="category" onclick="showProducts('list_dessert')">Desserts</button>
+                        <button class="category" onclick="showProducts('list_boissons')">Boissons</button>
+                        <button class="category" onclick="showProducts('list_pizza')">Pizza</button>
+                    </div>
+                </div>
+            </div>
+            <div class="item-group-wrapper">
+                <div class="item-group">
+                    <div class="products" id="products"></div>
+                </div>
+                <div class="item-group">
+                    <div id="options" class="options"></div>
+                </div>
+            </div>
         </div>
+        <div class="right-container">
+            <div class="register-wrapper">
+                <div class="customer">
+                    <input type="text" placeholder="Commentaire..." />
+                </div>
 
-        <button id="addToCartButton" onclick="addToCart()" style="display: none;">Ajouter au panier</button>
+                <div class="register">
+                    <h2>Panier</h2>
+                    <div class="item-products">
+                        <div class="cart">
+                            <ul class="product-bar"></ul>
+                        </div>
+                    </div>
 
-    </div>
-    <div class="cart">
-        <h2>Panier</h2>
-        <ul id="cart"></ul>
-        <p><span id="total"></span></p>
-        <button id="print" onclick="printTicket()">Imprimer</button>
+                    <div class="buttons">
+                        <div id="addToCartButton" class="add-to-cart-button">
+                            <a onclick="addToCart()">Ajouter</a>
+                        </div>
+                        <div class="print-button">
+                            <a id="print" onclick="printTicket()">Imprimer <span id="total"></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-
 <script src="/js/script.js"></script>
+<link rel="stylesheet" href="/css/style.css">
 </body>
 </html>
