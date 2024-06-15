@@ -1,7 +1,7 @@
 const list_tacos = {
     1: { name: "Tacos 1 viande", price: 7.5 },
-    2: { name: "Tacos 2 viandes", img: "images/tacos/tacos2.png", price: 8.50 },
-    3: { name: "Tacos 3 viandes", img: "images/tacos/tacos3.png", price: 9.50 }
+    2: { name: "Tacos 2 viandes", price: 8.50 },
+    3: { name: "Tacos 3 viandes", price: 9.50 }
 };
 
 const list_sandwichs = {
@@ -18,17 +18,17 @@ const list_sandwichs = {
 };
 
 const list_burgers = {
-    1: { name: "Cheese burger", price: 4.50 },
-    2: { name: "Double Cheese burger", price: 5.50 },
-    3: { name: "Chicken burger",  price: 5.50 },
-    4: { name: "Fish burger", price: 5.50 },
-    5: { name: "Chic'n Beef burger", price: 7 },
-    6: { name: "Crousty burger",  price: 8 },
-    7: { name: "Classique burger", price: 8.50 },
-    8: { name: "Classique poulet burger", price: 9.50 },
-    9: { name: "Savoyard burger", price: 10 },
-    10: { name: "Chèvre burger", price: 10.50 },
-    11: { name: "Black bacon burger", price: 11 },
+    1: { name: "Cheese", price: 4.50 },
+    2: { name: "Double Cheese", price: 5.50 },
+    3: { name: "Chicken",  price: 5.50 },
+    4: { name: "Fish", price: 5.50 },
+    5: { name: "Chic'n Beef", price: 7 },
+    6: { name: "Crousty",  price: 8 },
+    7: { name: "Classique", price: 8.50 },
+    8: { name: "Classique poulet", price: 9.50 },
+    9: { name: "Savoyard", price: 10 },
+    10: { name: "Chèvre", price: 10.50 },
+    11: { name: "Black bacon", price: 11 },
     12: { name: "Toasty",  price: 8 }
 };
 
@@ -84,11 +84,11 @@ const list_pizza = {
 };
 
 const list_boissons = {
-    1: { name: "Soda", img: "images/soda.png", price: 2},
-    2: { name: "Capri sun", img: "images/caprisun.png", price: 1.5 },
-    3: { name: "Eau", img: "images/eau.png", price: 1.5 },
-    4: { name: "Grand coca", img: "images/grandecoca.png", price: 3.50 },
-    5: { name: "Grand Eau", img: "images/grandeau.png", price: 2.50 }
+    1: { name: "Soda", price: 2},
+    2: { name: "Capri sun", price: 1.5 },
+    3: { name: "Eau", price: 1.5 },
+    4: { name: "Grand coca", price: 3.50 },
+    5: { name: "Grand Eau", price: 2.50 }
 };
 
 const list_options = {
