@@ -51,7 +51,9 @@ const list_texmex = {
     3: { name: "Oignon Ring x4", price: 5.50 },
     4: { name: "Wings x4", price: 5.50 },
     5: { name: "Camembert pané x4", price: 5.50 },
-    6: { name: "Jalapenos x4", price: 5.50 }
+    6: { name: "Jalapenos x4", price: 5.50 },
+    7: { name: "Barquette kebab", price: 6 },
+    8: { name: "Barquette + Frites", price: 2.50 },
 };
 
 const list_menu_enfant = {
@@ -91,19 +93,26 @@ const list_boissons = {
 
 const list_options = {
     1: { name: "MENU", price: 2 },
-    9: { name: "AUCUN", img: "", price: 0 },
-    1: { name: "Algerienne", img: "images/saucealgerienne.png", price: 0 },
-    2: { name: "Samourai", img: "images/saucesamourai.png", price: 0 },
-    3: { name: "Biggy", img: "images/saucebiggy.png", price: 0 },
-    4: { name: "Blanche", img: "images/sauceblanche.png", price: 0 },
-    5: { name: "Pain", img: "images/pain.png", price: 0 },
-    6: { name: "Galette", img: "images/galette.png", price: 0 },
-    7: { name: "Suppl. Viande", img: "images/supplviande.png", price: 1 },
-    8: { name: "Suppl. Fromage", img: "images/supplfromage.png", price: 1 },
-    10: { name: "Frites", price: 2.50 },
-    11: { name: "Barquette kebab", price: 6 },
-    11: { name: "Barquette + Frites", price: 2.50 },
-
+    2: { name: "AUCUN", price: 0 },
+    3: { name: "Algerienne", price: 0 },
+    4: { name: "Samourai", price: 0 },
+    5: { name: "Biggy", price: 0 },
+    6: { name: "Ketchup", price: 0 },
+    3: { name: "Mayonnaise", price: 0 },
+    4: { name: "Andalouse", price: 0 },
+    5: { name: "Moutarde Miel", price: 0 },
+    6: { name: "Curry", price: 0 },
+    4: { name: "Harissa", price: 0 },
+    5: { name: "Fromagère", price: 0 },
+    6: { name: "Brazil", price: 0 },
+    7: { name: "Pain", price: 0 },
+    8: { name: "Galette", price: 0 },
+    9: { name: "Suppl. Viande", price: 1 },
+    10: { name: "Suppl. Fromage", price: 1 },
+    11: { name: "Frites", price: 2.50 },
+    9: { name: "Gratiné Cheddar", price: 1 },
+    10: { name: "Gratiné Mozza", price: 1 },
+    11: { name: "Gratiné Raclette", price: 1 }
 };
 
 const categories = {
