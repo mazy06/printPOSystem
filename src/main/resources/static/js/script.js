@@ -317,12 +317,18 @@ showProducts('list_tacos');
 showOptions();
 
 function printTicket() {
+    // Récupérer la valeur du champ de commentaire
+    const comment = document.getElementById('comment').value;
+
     const cartContent = cart.map(item => {
         const optionsText = item.options.map(option => option.name).join('\n + ');
         return `${item.name}\n + ${optionsText}\n - ${item.price.toFixed(2)} euros`;
     }).join('\n\n');
+
     const total = cart.reduce((sum, item) => sum + item.price, 0);
-    const ticketContent = `\n\nArticle:\n\n${cartContent}\n\nTotal: ${total.toFixed(2)} euros`;
+
+    // Inclure le commentaire dans le contenu du ticket
+    const ticketContent = `\n\nArticle:\n\n${cartContent}\n\nTotal: ${total.toFixed(2)} euros\n\nCommentaire: ${comment}`;
 
     fetch('/print', {
         method: 'POST',
