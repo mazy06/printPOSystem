@@ -1,96 +1,109 @@
 const list_tacos = {
-    1: { name: "Tacos 1 viande", img: "images/tacos/tacos.png", price: 2 },
-    2: { name: "Tacos 2 viandes", img: "images/tacos/tacos2.png", price: 15 },
-    3: { name: "Tacos 3 viandes", img: "images/tacos/tacos3.png", price: 9 }
+    1: { name: "Tacos 1 viande", price: 7.5 },
+    2: { name: "Tacos 2 viandes", img: "images/tacos/tacos2.png", price: 8.50 },
+    3: { name: "Tacos 3 viandes", img: "images/tacos/tacos3.png", price: 9.50 }
 };
 
 const list_sandwichs = {
-    1: { name: "Kebab", img: "images/sandwichs/seul/kebab.png", price: 2 },
-    2: { name: "Big Blue", img: "images/sandwichs/seul/bigblue.png", price: 15 },
-    3: { name: "Americain", img: "images/sandwichs/seul/americain.png", price: 9 },
-    4: { name: "Chic'n Plus", img: "images/sandwichs/seul/chicnplus.png", price: 9 },
-    5: { name: "Tikka", img: "images/sandwichs/seul/tikka.png", price: 9 },
-    6: { name: "Pakito", img: "images/sandwichs/seul/pakito.png", price: 9 },
-    7: { name: "Perse", img: "images/sandwichs/seul/perse.png", price: 9 },
-    8: { name: "Boursin", img: "images/sandwichs/seul/boursin.png", price: 9 },
-    9: { name: "Marin", img: "images/sandwichs/seul/marin.png", price: 9 },
-    10: { name: "Toasty", img: "images/sandwichs/seul/toasty.png", price: 9 }
+    1: { name: "Kebab", price: 6 },
+    2: { name: "Big Blue", price: 6.50 },
+    3: { name: "Americain", price: 6.50 },
+    4: { name: "Chic'n Plus", price: 6.50 },
+    5: { name: "Tikka", price: 6.50 },
+    6: { name: "Pakito",  price: 6.50 },
+    7: { name: "Perse", price: 7.50 },
+    8: { name: "Boursin",  price: 7.50 },
+    9: { name: "Marin", price: 7.50 },
+    10: { name: "Toasty",  price: 9 }
 };
 
 const list_burgers = {
-    1: { name: "Cheese burger", img: "images/cheeseburger.png", price: 2 },
-    2: { name: "Double Cheese burger", img: "images/doublecheeseburger.png", price: 15 },
-    3: { name: "Chicken burger", img: "images/chickenburger.png", price: 9 },
-    4: { name: "Fish burger", img: "images/fishburger.png", price: 9 },
-    5: { name: "Chic'n Beef burger", img: "images/chicnbeefburger.png", price: 9 },
-    6: { name: "Crousty burger", img: "images/croustyburger.png", price: 9 },
-    7: { name: "Classique burger", img: "images/classiqueburger.png", price: 9 },
-    8: { name: "Classique poulet burger", img: "images/classiquepouletburger.png", price: 9 },
-    9: { name: "Savoyard burger", img: "images/savoyardburger.png", price: 9 },
-    10: { name: "Chèvre burger", img: "images/chevreburger.png", price: 9 },
-    11: { name: "Black bacon burger", img: "images/blackbaconburger.png", price: 9 }
+    1: { name: "Cheese burger", price: 4.50 },
+    2: { name: "Double Cheese burger", price: 5.50 },
+    3: { name: "Chicken burger",  price: 5.50 },
+    4: { name: "Fish burger", price: 5.50 },
+    5: { name: "Chic'n Beef burger", price: 7 },
+    6: { name: "Crousty burger",  price: 8 },
+    7: { name: "Classique burger", price: 8.50 },
+    8: { name: "Classique poulet burger", price: 9.50 },
+    9: { name: "Savoyard burger", price: 10 },
+    10: { name: "Chèvre burger", price: 10.50 },
+    11: { name: "Black bacon burger", price: 11 },
+    12: { name: "Toasty",  price: 8 }
 };
 
 const list_assiettes = {
-    1: { name: "Assiette poulet", img: "images/assiettepoulet.png", price: 2 },
-    2: { name: "Assiette kebab", img: "images/assiettekebab.png", price: 15 },
-    3: { name: "Assiette Mixte", img: "images/assiettemixte.png", price: 9 },
-    4: { name: "Assiette kefta", img: "images/assiettekefta.png", price: 9 }
+    1: { name: "Assiette poulet", price: 9.50 },
+    2: { name: "Assiette kebab", price: 9.50 },
+    3: { name: "Assiette Mixte", price: 12 },
+    4: { name: "Assiette kefta", price: 12 }
 };
 
 const list_salades = {
-    1: { name: "Salade classique", img: "images/saladeclassique.png", price: 2 },
-    2: { name: "Salade chicken", img: "images/saladechicken.png", price: 15 },
-    3: { name: "Salade pêcheur", img: "images/saladepecheur.png", price: 9 }
+    1: { name: "Salade classique", price: 7.50 },
+    2: { name: "Salade chicken", price: 8.50 },
+    3: { name: "Salade pêcheur", price: 8.50 }
 };
 
 const list_texmex = {
-    1: { name: "Nuggets", img: "images/nuggets.png", price: 2, option: [1,2,3] },
-    2: { name: "Tenders", img: "images/tenders.png", price: 15 },
-    3: { name: "Oignon Ring", img: "images/oignonring.png", price: 9 },
-    4: { name: "Wings", img: "images/wings.png", price: 9 },
-    5: { name: "Camembert pané", img: "images/camembertpane.png", price: 9 },
-    6: { name: "Jalapenos", img: "images/jalapenos.png", price: 9 },
-    7: { name: "Frites", img: "images/frite.png", price: 9 },
-    8: { name: "Barquette kebab", img: "images/barquettekebab.png", price: 9 }
+    1: { name: "Nuggets x5", price: 5.50},
+    2: { name: "Tenders x4", price: 5.50 },
+    3: { name: "Oignon Ring x4", price: 5.50 },
+    4: { name: "Wings x4", price: 5.50 },
+    5: { name: "Camembert pané x4", price: 5.50 },
+    6: { name: "Jalapenos x4", price: 5.50 }
 };
 
 const list_menu_enfant = {
-    1: { name: "Menu enfant", img: "images/menuenfant.png", price: 2 },
-    2: { name: "Menu enfant", img: "images/menuenfant.png", price: 2 },
-    3: { name: "Menu enfant", img: "images/menuenfant.png", price: 2 }
+    1: { name: "Menu Cheese",  price: 6 },
+    2: { name: "Menu Nugget", price: 6 },
 };
 
 const list_dessert = {
-    1: { name: "Tiramisu speculos", img: "images/tiramisuspeculos.png", price: 2 },
-    2: { name: "Tarte au daim", img: "images/tarteaudaim.png", price: 15 },
-    3: { name: "Cheesecake oreo", img: "images/cheesecakeoreo.png", price: 9 }
+    1: { name: "Tiramisu speculos",price: 3 },
+    2: { name: "Tarte au daim", price: 3 },
+    3: { name: "Cheesecake oreo",  price: 3 },
+    4: { name: "Tiramisu daim", price: 3}
 };
 
 const list_pizza = {
-    1: { name: "Pizza A", img: "images/tiramisuspeculos.png", price: 2 },
-    2: { name: "Pizza B", img: "images/tarteaudaim.png", price: 15 },
-    3: { name: "Pizza C", img: "images/cheesecakeoreo.png", price: 9 }
+    1: { name: "Marguerita", price: 8 },
+    2: { name: "Reine", price: 8 },
+    3: { name: "Kebab", price: 8 },
+    4: { name: "Neptune", price: 8},
+    5: { name: "Poulet", price: 8},
+    6: { name: "Crèmeuse", price: 8},
+    7: { name: "3 fromages", price: 10},
+    8: { name: "Aubergine", price: 10 },
+    9: { name: "Chèvre Miel", price: 10},
+    10: { name: "Norvegiènne", price: 10},
+    11: { name: "Végétarienne", price: 10},
+    12: { name: "3 Cannibale", price: 10}
 };
 
 const list_boissons = {
     1: { name: "Soda", img: "images/soda.png", price: 2},
-    2: { name: "Capri sun", img: "images/caprisun.png", price: 15 },
-    3: { name: "Eau", img: "images/eau.png", price: 9 },
-    4: { name: "Grand coca", img: "images/grandecoca.png", price: 9 },
-    5: { name: "Grand Eau", img: "images/grandeau.png", price: 9 }
+    2: { name: "Capri sun", img: "images/caprisun.png", price: 1.5 },
+    3: { name: "Eau", img: "images/eau.png", price: 1.5 },
+    4: { name: "Grand coca", img: "images/grandecoca.png", price: 3.50 },
+    5: { name: "Grand Eau", img: "images/grandeau.png", price: 2.50 }
 };
 
 const list_options = {
-    1: { name: "Algerienne", img: "images/saucealgerienne.png", price: 2 },
-    2: { name: "Samourai", img: "images/saucesamourai.png", price: 15 },
-    3: { name: "Biggy", img: "images/saucebiggy.png", price: 9 },
-    4: { name: "Blanche", img: "images/sauceblanche.png", price: 9 },
-    5: { name: "Pain", img: "images/pain.png", price: 9 },
-    6: { name: "Galette", img: "images/galette.png", price: 9 },
-    7: { name: "Suppl. Viande", img: "images/supplviande.png", price: 9 },
-    8: { name: "Suppl. Fromage", img: "images/supplfromage.png", price: 9 },
-    9: { name: "Aucun", img: "", price: 0 }
+    1: { name: "MENU", price: 2 },
+    9: { name: "AUCUN", img: "", price: 0 },
+    1: { name: "Algerienne", img: "images/saucealgerienne.png", price: 0 },
+    2: { name: "Samourai", img: "images/saucesamourai.png", price: 0 },
+    3: { name: "Biggy", img: "images/saucebiggy.png", price: 0 },
+    4: { name: "Blanche", img: "images/sauceblanche.png", price: 0 },
+    5: { name: "Pain", img: "images/pain.png", price: 0 },
+    6: { name: "Galette", img: "images/galette.png", price: 0 },
+    7: { name: "Suppl. Viande", img: "images/supplviande.png", price: 1 },
+    8: { name: "Suppl. Fromage", img: "images/supplfromage.png", price: 1 },
+    10: { name: "Frites", price: 2.50 },
+    11: { name: "Barquette kebab", price: 6 },
+    11: { name: "Barquette + Frites", price: 2.50 },
+
 };
 
 const categories = {
