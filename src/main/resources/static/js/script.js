@@ -172,21 +172,22 @@ function selectProduct(productId, category) {
 
 function selectOption(optionId) {
     const optionIndex = selectedOptions.findIndex(option => option.id === optionId);
+    const selectedOptionContainer = document.getElementById(`option_container_${optionId}`);
+    const parentDiv = selectedOptionContainer.parentNode;
+
     if (optionIndex !== -1) {
+        // Option is already selected, deselect it
         selectedOptions.splice(optionIndex, 1);
-        const selectedOptionContainer = document.getElementById(`option_container_${optionId}`);
-        const parentDiv = selectedOptionContainer.parentNode;
-        parentDiv.style.backgroundColor = '#4CAF50';
+        parentDiv.style.backgroundColor = '#42a07f'; // original darker green color
         const children = parentDiv.children;
         for (let i = 0; i < children.length; i++) {
             const child = children[i];
-            child.style.color = '#4CAF50';
+            child.style.color = 'white'; // original text color
         }
     } else {
+        // Option is not selected, select it
         const selectedOption = { id: optionId };
         selectedOptions.push(selectedOption);
-        const selectedOptionContainer = document.getElementById(`option_container_${optionId}`);
-        const parentDiv = selectedOptionContainer.parentNode;
         parentDiv.style.backgroundColor = 'black';
         const children = parentDiv.children;
         for (let i = 0; i < children.length; i++) {
@@ -195,6 +196,7 @@ function selectOption(optionId) {
         }
     }
 }
+
 
 function toggleOptions() {
     const optionsContainer = document.getElementById('optionsContainer');
