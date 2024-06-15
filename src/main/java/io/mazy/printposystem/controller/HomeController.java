@@ -18,9 +18,9 @@ public class HomeController {
     public String index(){
         return "index";
     }
-    @GetMapping("/test")
-    public String test(){
-        return "test";
+    @GetMapping("/login")
+    public String login(){
+        return "login";
     }
 
     @GetMapping("/healthcheck")

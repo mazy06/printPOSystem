@@ -110,26 +110,10 @@ let cart = [];
 let selectedProduct = null;
 let selectedOptions = [];
 
-async function getPublicIP() {
-    try {
-        const response = await fetch('https://api.ipify.org?format=json');
-        const data = await response.json();
-        return data.ip;
-    } catch (error) {
-        console.error('Erreur lors de la récupération de l\'adresse IP publique:', error);
-        return null;
-    }
-}
-
+// Autres fonctions existantes...
+// Par exemple, les fonctions showProducts, selectProduct, selectOption, etc.
 
 function showProducts(category) {
-    getPublicIP().then(ip => {
-        if (ip) {
-            console.log('Votre adresse IP publique est :', ip);
-        } else {
-            console.log('Impossible de récupérer l\'adresse IP publique.');
-        }
-    });
     const productsContainer = document.getElementById('products');
     productsContainer.innerHTML = '';
     const products = categories[category];
@@ -264,28 +248,43 @@ function resetSelections() {
     selectedOptions = [];
 }
 
+function addToCart() {
+    if (!selectedProduct || selectedOptions.length === 0) {
+        alert('Veuillez sélectionner un produit et au moins une option avant d\'ajouter au panier.');
+        return;
+    }
+
+    const product = categories[selectedProduct.category][selectedProduct.id];
+    const productName = product.name;
+    const productPrice = selectedOptions.reduce((total, option) => total + list_options[option.id].price, product.price);
+    const options = selectedOptions.map(option => list_options[option.id]);
+
+    cart.push({ name: productName, price: productPrice, options: options });
+
+    updateCart();
+    resetSelections();
+
+    document.getElementById('optionsContainer').style.display = 'none';
+}
+
 function updateCart() {
-    // Accéder au premier élément avec la classe 'product-bar'
-    const cartContainer = document.getElementsByClassName('product-bar')[0];
-
-    // Vérifier si l'élément existe
+    const cartContainer = document.querySelector('.product-bar');
     if (cartContainer) {
-        // Vider le conteneur de la liste des produits
         cartContainer.innerHTML = '';
-
         let total = 0;
+
         cart.forEach(item => {
             const cartItemElement = document.createElement('li');
+            cartItemElement.classList.add('product-bar');
             cartItemElement.innerHTML = `
                 <span>${item.name}</span>
-                <span>${item.price} euros</span>
+                <span>${item.price.toFixed(2)} €</span>
             `;
             cartContainer.appendChild(cartItemElement);
             total += item.price;
         });
 
-        // Mettre à jour le total
-        document.getElementById('total').innerHTML = `${total} euros`;
+        document.getElementById('total').textContent = `${total.toFixed(2)} €`;
     }
 }
 
@@ -294,7 +293,10 @@ showProducts('list_tacos');
 showOptions();
 
 function printTicket() {
-    const cartContent = cart.map(item => `${item.name}`).join('\n\n');
+    const cartContent = cart.map(item => {
+        const optionsText = item.options.map(option => option.name).join('\n + ');
+        return `${item.name}\n + ${optionsText}\n - ${item.price.toFixed(2)} euros`;
+    }).join('\n\n');
     const total = cart.reduce((sum, item) => sum + item.price, 0);
     const ticketContent = `\n\nArticle:\n\n${cartContent}\n\nTotal: ${total.toFixed(2)} euros`;
 
@@ -308,11 +310,38 @@ function printTicket() {
         .then(response => response.text())
         .then(data => {
             console.log(data);
-            console('Ticket envoyé à l\'imprimante');
+            alert('Ticket envoyé à l\'imprimante');
         })
         .catch(error => {
             console.error('Erreur:', error);
             alert('Erreur lors de l\'envoi du ticket à l\'imprimante');
         });
+
+    cart = [];
+    updateCart();
 }
+
+
+/*function printTicket() {
+    const cartItems = cart.map(item => `${item.name} - ${item.price.toFixed(2)} €`).join('\n');
+    //alert(`Ticket:\n\n${cartItems}\n\nTotal: ${document.getElementById('total').textContent}`);
+    cart = [];
+    updateCart();
+}*/
+
+// Assurez-vous que les utilisateurs sont redirigés vers la page de connexion s'ils ne sont pas authentifiés
+document.addEventListener('DOMContentLoaded', function () {
+    checkUserLoggedIn();
+});
+
+function checkUserLoggedIn() {
+    const accessToken = localStorage.getItem('access_token');
+    const refreshToken = localStorage.getItem('refresh_token');
+    if (!accessToken || !refreshToken) {
+        window.location.href = 'login'; // Redirige vers la page de connexion
+    }
+}
+
+
+
 

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@1"></script>
+    <link rel="stylesheet" type="text/css" href="../static/css/login.css">
+</head>
+<body>
+<div class='container'>
+    <div class='section'>
+        <h1>POSystem connexion</h1>
+    </div>
+    <div class='section' id="login-section">
+        <form id='log-in'>
+            <label>Email</label><input type='email' name='email' />
+            <label>Password</label><input type='password' name='password' />
+            <input type='submit'>
+        </form>
+    </div>
+    <div class='section' id="logout-section" style="display: none;">
+        <h3>Logout</h3>
+        <button id='logout-button'>Logout</button>
+    </div>
+</div>
+</body>
+<script>
+    var SUPABASE_URL = 'https://aglnnvwhtbkudpkfjpri.supabase.co'
+    var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFnbG5udndodGJrdWRwa2ZqcHJpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTgzNzE3ODgsImV4cCI6MjAzMzk0Nzc4OH0.38aOMzO_81dVq57L9rwqGHRefQvkWwDT9_z_Wvlthe0'
+
+    var supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
+    window.userToken = null
+
+    document.addEventListener('DOMContentLoaded', function (event) {
+        var logInForm = document.querySelector('#log-in')
+        logInForm.onsubmit = logInSubmitted.bind(logInForm)
+
+        var logoutButton = document.querySelector('#logout-button')
+        logoutButton.onclick = logoutSubmitted.bind(logoutButton)
+
+        // Vérifie si l'utilisateur est déjà connecté
+        checkUserLoggedIn()
+    })
+
+    const logInSubmitted = (event) => {
+        event.preventDefault()
+        const email = event.target[0].value
+        const password = event.target[1].value
+
+        supabase.auth
+            .signIn({ email, password })
+            .then((response) => {
+                console.log(response)
+                response.error ? alert(response.error.message) : setToken(response)
+            })
+            .catch((err) => {
+                console.error(err)
+            })
+    }
+
+    const logoutSubmitted = (event) => {
+        event.preventDefault()
+
+        supabase.auth
+            .signOut()
+            .then((_response) => {
+                localStorage.removeItem('access_token')
+                localStorage.removeItem('refresh_token')
+                alert('Logout successful')
+                updateUIOnLogout()
+            })
+            .catch((err) => {
+                console.error(err)
+            })
+    }
+
+    function setToken(response) {
+        if (response.user.confirmation_sent_at && !response?.session?.access_token) {
+            alert('Confirmation Email Sent')
+        } else {
+            localStorage.setItem('access_token', response.session.access_token)
+            localStorage.setItem('refresh_token', response.session.refresh_token)
+            alert('Logged in as ' + response.user.email)
+            redirectToIndex()
+        }
+    }
+
+    function updateUIOnLogin() {
+        document.getElementById('login-section').style.display = 'none'
+        document.getElementById('logout-section').style.display = 'block'
+    }
+
+    function updateUIOnLogout() {
+        document.getElementById('login-section').style.display = 'block'
+        document.getElementById('logout-section').style.display = 'none'
+    }
+
+    function checkUserLoggedIn() {
+        const accessToken = localStorage.getItem('access_token')
+        if (accessToken) {
+            supabase.auth.setAuth(accessToken)
+            updateUIOnLogin()
+        }
+    }
+
+    function redirectToIndex() {
+        window.location.href = '/'
+    }
+</script>
+</html>

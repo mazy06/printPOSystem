@@ -12,28 +12,40 @@ html, body {
     height: 100%;
 }
 
+#cart-title {
+    text-align: center;
+    background: #2874A6;
+    padding: 12px;
+    margin: 0;
+    color: white;
+}
+
 nav {
     display: flex;
     justify-content: space-between;
     background: #34495e;
     padding: 9px 0;
 }
+
 nav ul {
     display: flex;
     align-items: center;
     margin: 0;
 }
+
 nav ul li {
     list-style-type: none;
 }
+
 nav ul li a {
     color: #fff;
     padding: 20px;
-    ;
 }
+
 nav ul li a:hover {
     background: #22303d;
 }
+
 nav .search input {
     width: 394px;
     height: 40px;
@@ -43,19 +55,10 @@ nav .search input {
     font-size: 16px;
     text-align: center;
 }
+
 nav .search input::placeholder {
     font-style: italic;
 }
-
-
-
-
-
-
-
-
-
-
 
 .products {
     display: flex;
@@ -118,57 +121,48 @@ button:hover {
     background: #3b8e71;
 }
 
+#cart-title {
+}
 
 .cart ul {
     list-style: none;
     padding: 0;
 }
 
-.cart li {
+.cart ul li {
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .sellables-container {
     display: flex;
     flex: 1;
 }
+
 .sellables-container .left-container {
     flex: 3;
     display: flex;
     flex-direction: column;
 }
+
 .sellables-container .left-container .sellables {
     display: flex;
     flex-direction: column;
 }
+
 .sellables-container .left-container .sellables .pos_products {
     overflow-y: auto;
     flex: 1;
 }
+
 .sellables-container .left-container .sellables .pos_products .categories {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     margin: 0.5em;
 }
+
 .sellables-container .left-container .sellables .pos_products .categories .category {
     padding: 17.5px;
     margin: 2px;
@@ -177,33 +171,38 @@ button:hover {
     background: #e6e9ed;
     color: #424A54;
 }
+
 .sellables-container .left-container .sellables .pos_products .categories .category:hover {
     background: #c8cfd8;
 }
+
 .sellables-container .left-container .sellables .pos_products .categories .active {
     background: #bac2cd;
     color: #424A54;
 }
+
 .sellables-container .left-container .sellables .pos_products .categories .active:hover {
     background: #abb5c2;
 }
+
 .sellables-container .left-container .sellables .item-group-wrapper .item-group .products.product-flex-container {
     display: flex;
     flex-wrap: wrap;
 }
-
 
 .sellables-container .right-container {
     flex: 1;
     display: flex;
     flex-direction: column;
 }
+
 .sellables-container .right-container .register-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
     flex: 1;
 }
+
 .sellables-container .right-container .register-wrapper .customer input {
     height: 40px;
     width: 394px;
@@ -213,9 +212,11 @@ button:hover {
     text-align: center;
     font-size: 16px;
 }
+
 .sellables-container .right-container .register-wrapper .customer input::placeholder {
     font-style: italic;
 }
+
 .sellables-container .right-container .register-wrapper .register {
     display: flex;
     flex-direction: column;
@@ -226,38 +227,69 @@ button:hover {
     box-shadow: 0px 1px 7px 0px rgba(0, 0, 0, 0.25);
     border-radius: 5px;
     background: #fff;
-    overflow-y: auto;
 }
+
+.register{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+    width: 400px;
+    margin: 1em 2em;
+    box-shadow: 0px 1px 7px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    background: #fff;
+}
+
 .sellables-container .right-container .register-wrapper .register .item-products {
     display: flex;
     flex-direction: column;
     flex: 1;
+    overflow-y: auto;
 }
+
 .sellables-container .right-container .register-wrapper .register .item-products .cart .product-bar {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sellables-container .right-container .register-wrapper .register .item-products .cart .product-bar li {
+    position: relative;
+    padding: 3px;
+    margin: 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.sellables-container .right-container .register-wrapper .register .item-products .cart .product-bar li > div {
     display: flex;
     justify-content: space-between;
-    padding: 1em;
-    background: #fff;
+    align-items: center;
+    position: absolute;
+    z-index: 1;
 }
-.sellables-container .right-container .register-wrapper .register .products .cart .product-bar:first-child {
-    margin-top: 1em;
+
+.sellables-container .right-container .register-wrapper .register .item-products .cart .product-bar li > ul {
+    list-style-type: none;
+    padding: 0 0 0 20px;  /* Indentation pour les options */
+    margin: 1px 0 0;
+    position: absolute;
+    z-index: 2;
 }
-.sellables-container .right-container .register-wrapper .register .products .cart .product-bar:hover {
-    background: #e6e6e6;
+
+.sellables-container .right-container .register-wrapper .register .item-products .cart .product-bar li > ul li {
+    font-style: italic;
+    color: #555;
 }
-.sellables-container .right-container .register-wrapper .register .products .cart .selected {
-    background: #68b3c8;
-    color: #fff;
-}
-.sellables-container .right-container .register-wrapper .register .products .cart .selected:hover {
-    background: #44a0b9;
-}
+
 .sellables-container .right-container .register-wrapper .register .buttons {
     display: flex;
     justify-content: space-between;
     margin: 1em;
 }
-.sellables-container .right-container .register-wrapper .register .buttons .add-to-cart-button, .sellables-container .right-container .register-wrapper .register .buttons .print-button {
+
+.sellables-container .right-container .register-wrapper .register .buttons .add-to-cart-button,
+.sellables-container .right-container .register-wrapper .register .buttons .print-button {
     flex: 1;
     display: flex;
     justify-content: center;
@@ -266,22 +298,81 @@ button:hover {
     border-radius: 5px;
     margin: 0 5px;
 }
-.sellables-container .right-container .register-wrapper .register .buttons .add-to-cart-button a, .sellables-container .right-container .register-wrapper .register .buttons .print-button a {
+
+.sellables-container .right-container .register-wrapper .register .buttons .add-to-cart-button a,
+.sellables-container .right-container .register-wrapper .register .buttons .print-button a {
     color: #fff;
 }
+
 .sellables-container .right-container .register-wrapper .register .buttons .add-to-cart-button {
     background: #2874A6;
 }
+
 .sellables-container .right-container .register-wrapper .register .buttons .add-to-cart-button a:hover {
     background: #236691;
 }
+
 .sellables-container .right-container .register-wrapper .register .buttons .print-button {
     background: #42a07f;
 }
+
 .sellables-container .right-container .register-wrapper .register .buttons .print-button a:hover {
     background: #3b8e71;
 }
 
-/*# sourceMappingURL=test.css.map */
+/* Styles ajoutés */
+.product-bar {
+    list-style-type: none;
+    padding: 0;
+}
 
+.product-bar li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
 
+.product-bar li > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.product-bar ul {
+    list-style-type: none;
+    padding: 0 0 0 20px;  /* Indentation pour les options */
+    margin: 5px 0 0;
+}
+
+.product-bar ul li {
+    font-style: italic;
+    color: #555;
+}
+
+/* Pour assurer que les éléments produits sont de la même taille et ajuster la police si nécessaire */
+.sellables-container .left-container .sellables .item-group-wrapper .item-group .products .product .item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100px; /* Vous pouvez ajuster la largeur selon vos besoins */
+    height: 100px; /* Vous pouvez ajuster la hauteur selon vos besoins */
+    padding: 10px;
+    margin: 0.5em;
+    border-radius: 5px;
+    background: #9b59b6;
+    color: #fff;
+    text-align: center;
+    overflow: hidden;
+}
+
+.sellables-container .left-container .sellables .item-group-wrapper .item-group .products .product .item:hover {
+    background: #804399;
+}
+
+.sellables-container .left-container .sellables .item-group-wrapper .item-group .products .product .item span {
+    font-size: 14px; /* Taille de police par défaut */
+}
+
+.sellables-container .left-container .sellables .item-group-wrapper .item-group .products .product .item span.long-text {
+    font-size: 12px; /* Réduire la taille de police pour les textes longs */
+}
